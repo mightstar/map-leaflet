@@ -83,7 +83,7 @@ function getCurrentLocation() {
 async function fetchUserCountryCode(lat, lng) {
   try {
     const result = await $.ajax({
-      url: "libs/php/getUserCountryCode.php",
+      url: "api/getUserCountryCode.php",
       type: "GET",
       dataType: "json",
       data: { lat, lng },
@@ -99,7 +99,7 @@ async function fetchUserCountryCode(lat, lng) {
 async function getGeonames(country) {
   try {
     const result = await $.ajax({
-      url: "libs/php/getGeonames.php",
+      url: "api/getGeonames.php",
       type: "POST",
       dataType: "json",
       data: {
@@ -115,7 +115,7 @@ async function getGeonames(country) {
 async function getWeather(north, south, east, west, countryCode) {
   try {
     const result = await $.ajax({
-      url: "libs/php/getWeather.php",
+      url: "api/getWeather.php",
       type: "POST",
       dataType: "json",
       data: { north, south, east, west },
@@ -144,7 +144,7 @@ async function getWeather(north, south, east, west, countryCode) {
 async function getOpenCage(capital, country) {
   try {
     const result = await $.ajax({
-      url: "libs/php/getOpenCage.php",
+      url: "api/getOpenCage.php",
       type: "POST",
       dataType: "json",
       data: {
@@ -167,7 +167,7 @@ async function getOpenCage(capital, country) {
 async function getCurrency(IsoCode) {
   try {
     const result = await $.ajax({
-      url: "libs/php/getCurrency.php",
+      url: "api/getCurrency.php",
       type: "POST",
       dataType: "json",
       data: {
@@ -184,7 +184,7 @@ async function getCurrency(IsoCode) {
 async function getGdp(Iso) {
   try {
     const result = await $.ajax({
-      url: "libs/php/getGdp.php",
+      url: "api/getGdp.php",
       type: "POST",
       dataType: "json",
       data: {
@@ -201,7 +201,7 @@ async function getGdp(Iso) {
 async function getCountryBorder(country) {
   try {
     const result = await $.ajax({
-      url: "libs/php/getCountryBorder.php",
+      url: "api/getCountryBorder.php",
       type: "POST",
       dataType: "json",
       data: { iso: country },
@@ -216,7 +216,7 @@ async function getCountryBorder(country) {
 async function getCountryWikiSummary(lat, lng) {
   try {
     const result = await $.ajax({
-      url: "libs/php/getCountryWikiSummary.php",
+      url: "api/getCountryWikiSummary.php",
       type: "POST",
       dataType: "json",
       data: {
@@ -234,7 +234,7 @@ async function getCountryWikiSummary(lat, lng) {
 async function getCities(country) {
   try {
     const result = await $.ajax({
-      url: "libs/php/getCities.php",
+      url: "api/getCities.php",
       type: "POST",
       dataType: "json",
       data: {
@@ -251,7 +251,7 @@ async function getCities(country) {
 async function getPointsOfInterest(country, featureCode) {
   try {
     const result = await $.ajax({
-      url: "libs/php/getPointsOfInterest.php",
+      url: "api/getPointsOfInterest.php",
       type: "POST",
       dataType: "json",
       data: {
