@@ -1,0 +1,441 @@
+* {
+  box-sizing: border-box;
+}
+
+/* Import Google Font - Roboto */
+/* @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap'); */
+
+body,
+html {
+  box-sizing: border-box;
+  height: 100%;
+}
+
+#countryText {
+  text-decoration: none;
+  padding: 6px 0px;
+  margin: 0 10px;
+  font-size: 22px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.favicon {
+  height: 21px;
+  width: 21px;
+  text-decoration: none;
+  background: none;
+  border: none;
+  margin-left: -1.1px;
+  margin-top: -1.9px;
+}
+
+#countryDropdown {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  right: 48px;
+  z-index: 1;
+  border-radius: 5px;
+  width: 300px;
+  height: 60px;
+  margin: auto;
+}
+
+#map {
+  height: 100vh;
+  width: 100%;
+  margin: 0 auto;
+  align-items: center;
+  z-index: 0;
+  position: relative;
+}
+
+input[type="text"] {
+  font-size: 19px;
+  font-family: Arial, Helvetica, sans-serif;
+  position: relative;
+  padding-left: 20px;
+}
+
+#staticBackdropLabel {
+  display: flex;
+  justify-content: center;
+}
+
+#image {
+  width: 60%;
+}
+
+#btn1 {
+  position: absolute;
+  left: 10px;
+  top: 220px;
+  z-index: 10;
+  height: 34.6px;
+  width: 34.6px;
+  border-radius: 4px;
+  border-color: rgb(192, 190, 182);
+  border-style: solid;
+}
+
+#btn2 {
+  position: absolute;
+  left: 10px;
+  top: 270px;
+  z-index: 10;
+  height: 34.6px;
+  width: 34.6px;
+  border-radius: 4px;
+  border-color: rgb(192, 190, 182);
+  border-style: solid;
+}
+
+#btn3 {
+  position: absolute;
+  left: 10px;
+  top: 320px;
+  z-index: 10;
+  height: 34.6px;
+  width: 34.6px;
+  border-radius: 4px;
+  border-color: rgb(192, 190, 182);
+  border-style: solid;
+}
+
+#button {
+  background: none;
+  border: none;
+}
+
+.btn {
+  margin: 0.4em;
+  width: 150px;
+  position: absolute;
+  top: 200px;
+  z-index: -2;
+}
+
+#atag {
+  color: white;
+}
+
+#preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9999;
+  overflow: hidden;
+  background: #fff;
+}
+
+#preloader:before {
+  content: "";
+  position: fixed;
+  top: calc(50% - 30px);
+  left: calc(50% - 30px);
+  border: 6px solid #f2f2f2;
+  border-top: 6px solid #7d7f81;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  -webkit-animation: animate-preloader 1s linear infinite;
+  animation: animate-preloader 1s linear infinite;
+}
+
+@-webkit-keyframes animate-preloader {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes animate-preloader {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+.selector-for-some-widget {
+  box-sizing: content-box;
+}
+
+#outsideDiv {
+  margin: 0 3em;
+}
+
+.tableHeader {
+  text-align: center;
+  font-weight: 100;
+  font-size: x-large;
+}
+
+#divResults {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+table {
+  width: 100%;
+}
+
+#GeonamesData {
+  position: absolute;
+  vertical-align: middle;
+  margin: 0 auto;
+  z-index: 1;
+}
+
+h2 {
+  font-size: 2.2rem;
+  text-decoration: underline;
+}
+
+h3 {
+  font-size: 2rem;
+  font-weight: bolder;
+  color: #090909;
+}
+
+.modal-content {
+  background-color: #fff;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.modal-header {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.modal-footer {
+  background-color: #f8f9fa;
+}
+
+h1.modal-title {
+  font-size: 24px;
+  margin-top: 0;
+}
+
+h2 {
+  font-size: 18px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+h3 {
+  font-size: 16px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+#txtSymbol {
+  font-weight: bold;
+  font-size: 24px;
+}
+
+.weather-modal-body {
+  background-image: url("img/WeatherBackground.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.modal-body {
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+/* Ensure Bootstrap's modal dimensions are not too large */
+.modal-dialog {
+  max-width: 400px;
+  /* Adjust as necessary for your design */
+}
+
+/* Style the modal content area with a light blue background and rounded corners */
+.modal-content {
+  font-family: "Roboto", sans-serif;
+  /* Professional font */
+  background-color: #ffffff;
+  /* Light background */
+  /* Light background */
+  color: #333333;
+  /* Professional text color */
+  /* Dark text for contrast */
+  border-radius: 8px;
+  /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  /* Subtle shadow */
+  padding: 20px;
+  /* Spacing inside the modal */
+}
+
+/* Style the modal header with a darker blue background and white text */
+.modal-header {
+  border-bottom: 1px solid #dee2e6;
+  /* Subtle border for separation */
+  font-size: 20px;
+  /* Larger font for headers */
+  font-weight: 700;
+  /* Bold font weight for headers */
+}
+
+/* Adjust the title size in the modal header */
+.modal-title {
+  font-size: 1.5rem;
+}
+
+/* Style the close button to match the header */
+.btn-close {
+  filter: invert(1);
+  /* Inverts the color to white */
+  opacity: 0.7;
+}
+
+.btn-close:hover {
+  opacity: 1;
+  /* Full opacity on hover */
+}
+
+/* Style the modal body */
+/* Modal Body */
+.modal-body {
+  font-size: 1rem;
+  /* Standard font size */
+  line-height: 1.5;
+  /* Improved readability */
+  padding-top: 15px;
+  /* Spacing from header */
+  padding-bottom: 15px;
+  /* Spacing above footer */
+}
+
+.weather-icon {
+  display: block;
+  margin: 10px auto;
+  width: 50px;
+  /* Adjust size as needed */
+  height: auto;
+}
+
+.temp-large {
+  font-size: 2rem;
+  /* Large font size for temperature */
+  font-weight: bold;
+  text-align: center;
+  margin: 20px 0;
+}
+
+.weather-description {
+  font-size: 1.2rem;
+  /* Adjust size as needed */
+  margin-bottom: 20px;
+}
+
+/* Style the modal footer, if you have one */
+.modal-footer {
+  border-top: 1px solid #dee2e6;
+  /* Subtle border for separation */
+  justify-content: flex-end;
+  /* Align buttons to the right */
+}
+
+/* If you have buttons in the footer, they should match the header */
+.modal-footer .btn {
+  color: white;
+  background-color: transparent;
+  /* No background color */
+  border: none;
+  /* Remove border */
+}
+
+.modal-footer .btn:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  /* Slight highlight on hover */
+}
+
+/* Buttons */
+.btn {
+  border: none;
+  /* Remove default border */
+  margin-left: 10px;
+  /* Spacing between buttons */
+  transition: background-color 0.3s;
+  /* Smooth transition for hover effect */
+}
+
+.btn-primary {
+  background-color: #007bff;
+  /* Primary button color */
+  color: white;
+  /* Text color for readability */
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+  /* Darker shade on hover */
+}
+
+.btn-secondary {
+  background-color: #6c757d;
+  /* Secondary button color */
+  color: white;
+  /* Text color for readability */
+}
+
+.btn-secondary:hover {
+  background-color: #545b62;
+  /* Darker shade on hover */
+}
+
+/* Responsive Design */
+@media (max-width: 576px) {
+  .modal-content {
+    margin: 10px;
+    /* Smaller margin on small screens */
+  }
+}
+
+/* Custom Scrollbar for Modal with Overflowing Content */
+.modal-body::-webkit-scrollbar {
+  width: 5px;
+  /* Scrollbar width */
+}
+
+.modal-body::-webkit-scrollbar-thumb {
+  background: #007bff;
+  /* Scrollbar color */
+  border-radius: 10px;
+  /* Rounded scrollbar */
+}
+
+.modal-body {
+  font-size: 14px;
+  /* Standard font size for body */
+  line-height: 1.6;
+  /* Increased line spacing for readability */
+}
+
+.modal-footer {
+  font-size: 14px;
+  /* Consistent font size with body */
+}
+
+.converter {
+  padding: 10px;
+  background: #f0f0f0;
+  border-radius: 6px;
+}

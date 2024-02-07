@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <!-- General Settings -->
+
+    <meta charset="utf-8" />
+    <title>Gazetteer</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Portfolio Project task" />
+    <meta name="author" content="Daniel To" />
+
+    <!-- CSS bootstrap -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+      rel="stylesheet"
+    />
+
+    <!-- Leaflet  -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+      integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="
+      crossorigin=""
+    />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.css"
+    />
+
+    <!-- Leaflet Extra Markers  -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet-extra-markers/dist/css/leaflet.extra-markers.min.css"
+    />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- Cluster  -->
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.1/MarkerCluster.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.1/MarkerCluster.Default.css"
+    />
+  </head>
+
+  <body>
+    <select id="countryDropdown" onchange="fetchCountryData()">
+      <!-- For Loop to CountryBorders.geo.json. Code in Index.js  -->
+    </select>
+
+    <!-- Map -->
+
+    <div id="map-container">
+      <div id="map"></div>
+    </div>
+
+    <!-- Map -->
+
+    <!-- Modal "General Info" -->
+
+    <div
+      class="modal modalGeneralInfoDesign"
+      id="staticBackdrop"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
+      tabindex="-1"
+      aria-labelledby="staticBackdropLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="staticBackdropLabel">
+              <img id="myImage" style="width: 50%; margin: 10px auto" />
+            </h1>
+
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              data-bs-target="#staticBackdrop"
+              aria-label="Close"
+            ></button>
+          </div>
+
+          <div class="modal-body">
+            <h2 align="left">Capital</h2>
+            <h3 id="txtCapital">
+              <!-- javascript contents -->
+            </h3>
+
+            <h2 align="left">Population</h2>
+
+            <h3 id="txtPopulation">
+              <!-- javascript contents -->
+            </h3>
+
+            <h2 align="left">Area (Square meters)</h2>
+            <h3 id="txtAreaInSqKm">
+              <!-- javascript contents -->
+            </h3>
+          </div>
+
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+              data-bs-target="#staticBackdrop"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Model " General Info" -->
+
+    <!-- Modal "Wikipedia Info" -->
+
+    <div
+      class="modal"
+      id="staticBackdrop4"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
+      tabindex="-1"
+      aria-labelledby="staticBackdropLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="staticBackdropLabel">
+              Wikipedia Information
+            </h1>
+            <!-- Removed data-bs-target attribute from close button -->
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <h2 align="left">Destination Summary</h2>
+            <h3 id="txtSummary1">
+              <!-- contents in here from JavaScript -->
+            </h3>
+            <a href="EJNEFJ" id="myLink">See More Info</a>
+          </div>
+          <div class="modal-footer">
+            <!-- Removed data-bs-target attribute from Close button -->
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Model " Wikipedia Info" -->
+
+    <!-- Model "Weather" -->
+
+    <div
+      class="modal fade"
+      id="staticBackdrop1"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
+      tabindex="-1"
+      aria-labelledby="staticBackdropLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="staticBackdropLabel">Weather</h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body weather-modal-body">
+            <!-- Assuming you have a way to determine the weather condition, you'd include an icon like this: -->
+            <img
+              src="img/cloudy.png"
+              alt="Weather Icon"
+              id="weatherIcon"
+              class="weather-icon"
+            />
+
+            <h2 align="left">Date Time</h2>
+            <h3 id="txtDatetime">
+              <!-- contents in here from javascript -->
+            </h3>
+
+            <h2 align="left">Clouds</h2>
+            <h3 id="txtClouds">
+              <!-- contents in here from javascript -->
+            </h3>
+
+            <!-- Apply the class "temp-large" for large temperature display -->
+            <h2 align="left">Temperature</h2>
+            <h3 id="txtTemperature">
+              <!-- contents in here from javascript -->
+            </h3>
+
+            <h2 align="left">Humidity</h2>
+            <h3 id="txtHumidity">
+              <!-- contents in here from javascript -->
+            </h3>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Model "Weather" -->
+
+    <!-- Model Currency  -->
+
+    <div
+      class="modal fade"
+      id="staticBackdrop2"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
+      tabindex="-1"
+      aria-labelledby="staticBackdropLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content modal-content3">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="staticBackdropLabel">
+              Exchange Rate
+            </h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <h2>Rate (USD base):</h2>
+            <h3 id="txtSymbol">
+              <!-- contents in here from javascript -->
+            </h3>
+            <h2>2022 GDP:</h2>
+            <h3 id="txtGdpValue2022">
+              <!-- contents in here from javascript -->
+            </h3>
+
+            <h2>2021 GDP :</h2>
+            <h3 id="txtGdpValue2021">
+              <!-- contents in here from javascript -->
+            </h3>
+
+            <h2>2020 GDP:</h2>
+            <h3 id="txtGdpValue2020">
+              <!-- contents in here from javascript -->
+            </h3>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Model Currency  -->
+
+    <!-- Model Converter  -->
+
+    <div
+      class="modal fade"
+      id="staticBackdrop3"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
+      tabindex="-1"
+      aria-labelledby="staticBackdropLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content modal-content3">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="staticBackdropLabel">
+              Currency Converter
+            </h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <h2>Rate (USD base):</h2>
+            <h3 id="txtSymbol-converter">
+              <!-- contents in here from javascript -->
+            </h3>
+            <div class="converter">
+              <label for="baseAmount">Amount in USD:</label>
+              <input type="number" id="baseAmount" value="1" min="0" />
+
+              <label for="convertedCurrency">Converted Currency:</label>
+              <span id="convertedCurrency">--</span>
+              <br />
+
+              <label for="convertedAmount">Converted Amount:</label>
+              <span id="convertedAmount">--</span>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Model Converter  -->
+
+    <!-- Model Cutom Modal  -->
+
+    <div
+      class="modal fade"
+      id="staticBackdrop4"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
+      tabindex="-1"
+      aria-labelledby="staticBackdropLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content modal-content3">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="staticBackdropLabel">
+              My Custom Modal
+            </h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <h2>Thanks very much!</h2>
+            <p>Name: Hu Z</p>
+          </div>
+          <div class="modal-footer"></div>
+        </div>
+      </div>
+    </div>
+    <!-- Model Currency  -->
+
+    <!-- Scripts -->
+
+    <script
+      src="https://code.jquery.com/jquery-3.6.1.min.js"
+      integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
+      crossorigin="anonymous"
+    ></script>
+
+    <script
+      src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+      integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
+      crossorigin=""
+    ></script>
+
+    <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+
+    <script src="https://unpkg.com/leaflet@latest/dist/leaflet.js"></script>
+
+    <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.js"></script>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+
+    <script src="https://unpkg.com/leaflet-extra-markers/dist/js/leaflet.extra-markers.js"></script>
+
+    <script
+      defer
+      src="https://use.fontawesome.com/releases/v5.12.0/js/all.js"
+    ></script>
+
+    <!-- Cluster Script -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.4.1/leaflet.markercluster.js"></script>
+
+    <!--  index.js -->
+
+    <script type="application/javascript" src="libs/js/index.js"></script>
+  </body>
+</html>
